@@ -1,18 +1,20 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main(){
-	int t,y,cnt=0;
+	int t,y;
 	while(cin>>t){
-    while(t--){
-      cnt++;
+    for(int i=0;i<t;i++){
+      string result;
       cin>>y;
       if(y%4==0){
-        if(y%100==0 && y%400!=0) cout<<"Case "<<cnt<<": a normal year"<<endl;
-        else cout<<"Case "<<cnt<<": a leap year"<<endl;
+        if(y%100==0 && y%400!=0) result = "normal";
+        else result = "leap";
       }else{
-        cout<<"Case "<<cnt<<": a normal year"<<endl;
+        result = "normal";
       }
+      cout<<"Case "<<i<<": a "<<result<<" year"<<endl;
     }	
   }
 }
