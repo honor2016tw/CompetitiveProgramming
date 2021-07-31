@@ -1,5 +1,5 @@
 *.out
 *.o
 *.exe
+*.txt
 test.*
-*.BAK
