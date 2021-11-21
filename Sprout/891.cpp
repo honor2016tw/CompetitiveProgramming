@@ -24,6 +24,6 @@ int main(){
 		dp2[i]=-1;
 	}
 	while(cin>>n>>m){
-		cout<<power(n,m)+(m?factor(n,n-m):n)<<endl;
+		cout<<(m?power(n,m)+factor(n,n-m):factor(n,n)+1)<<endl;
 	}
 }
