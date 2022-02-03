@@ -1,0 +1,1 @@
+# [d057](https://zerojudge.tw/ShowProblem?problemid=d057)
