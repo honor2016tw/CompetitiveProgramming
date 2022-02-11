@@ -1,31 +1,32 @@
 #include <iostream>
-#include <stack>
+#include <vector>
 using namespace std;
 
 int main(){
   int t;
-  string input;
   cin>>t;
+  vector<int> V;
   while(t--){
     long long int sum=0;
     bool failed=false;
-    stack<int> S; 
+    string input;
     cin>>input;
     for(size_t i=0;i<input.length();i++){
       switch(input[i]){
         case '(':
-          S.push(0);
+          V.push_back(0);
           break;
         case ')':
-          if(!S.empty() || S.top()==0){
+          if(!V.empty() && V.back()==0){
             sum++;
-            S.pop();
+            V.pop_back();
           }else{
             failed=true;
           }
       }
     }
-    if(!S.empty()) failed = true;
+    if(!V.empty()) failed = true;
     cout<<(failed?0:sum)<<endl;
-  }
+    V.clear();
+ }
 }
