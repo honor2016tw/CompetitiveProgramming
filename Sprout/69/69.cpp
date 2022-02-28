@@ -1,9 +1,19 @@
 #include <iostream>
+#include <algorithm>
 #define MAXN 10000
+#define endl "\n"
 #define fastio cin.tie(0);ios::sync_with_stdio(0)
 using namespace std;
 
-int a[MAXN],b[MAXN],c[MAXN];
+int current[MAXN],a[MAXN],b[MAXN],c[MAXN];
+
+int check(int N,int day){
+  for(int i=0;i<N;i++)
+    current[i] = a[i]+day*b[i];
+  sort(current,current+N);
+  int* result = upper_bound(current,current+N,c[N-1]);
+  return N-(result-current);
+}
 
 int main(){
   fastio;
@@ -13,40 +23,28 @@ int main(){
     cin>>N>>K;
     for(int i=0;i<N;i++) cin>>a[i]>>b[i];
     for(int i=0;i<N;i++) cin>>c[i];
-    int M=0,zero=0,time=0;
-    int biggest = -1,longest=-1;
-    bool impossible = false;
-    for(int i=0;i<N;i++)
-      if(c[i]>biggest) biggest=c[i];
-    for(int i=0;i<N;i++)
-      if(((biggest-a[i])/b[i])>longest && b[i]!=0)
-        longest = (biggest-a[i])/b[i];
+    sort(c,c+N);
+    int zero=0;
+    bool impossible = true;
     for(int i=0;i<N;i++)
       if(b[i]==0) zero++;
-    if(zero>=K)
+    if(zero>=N-K)
       impossible=true;
-    time=1;
-    while(!impossible){
-      int cnt=0;
-      for(int i=0;i<N;i++)
-        if(a[i]+time*b[i]>biggest)
-          cnt++;
-      if(cnt==K){
-        M = time;
-        break;
-       }
-      else if(cnt>K){
-        time = longest/2;
+    int Left=0,Right=100000000,result=0,Mid;
+    while(Left<=Right){
+      //cout<<"Left:"<<Left<<endl;
+      //cout<<"Right:"<<Right<<endl;
+      Mid=(Left+Right)/2;
+      result = check(N,Mid);
+      if(result<K){
+        Left = Mid+1;
         continue;
       }else{
-        if(longest + time == time*2){
-            impossible = true;
-            break;
-          }else
-            time = (longest + time)/2;
+        impossible = false;
+        Right = Mid-1;
+        continue;
       }
     }
-    M=time;
-    cout<<(impossible?-1:(M-1))<<endl;
+    cout<<(impossible?-1:Mid)<<endl;
   }
 }
