@@ -1,12 +1,12 @@
 #include <iostream>
-#define ll long long 
+#define ll long long
 using namespace std;
 
-int main(){
+int main() {
     ll int n,m;
-    while(cin>>n>>m){
+    while(cin>>n>>m) {
         int cnt=0;
-        for(int i=n,sum=n;sum<=m;i++,sum+=i) cnt++;
+        for(int i=n,sum=n; sum<=m; i++,sum+=i) cnt++;
         cout<<cnt+1<<endl;
-      }
-  }
+    }
+}

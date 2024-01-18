@@ -24,7 +24,7 @@ int main()
             s2i[i] = 1000;
     }
     sum=s2i[A.length()-1];
-    for(int i=A.length()-1;i>0;i--){
+    for(int i=A.length()-1; i>0; i--) {
         if(s2i[i]==s2i[i-1])
             sum+=s2i[i-1];
         else if(s2i[i]<s2i[i-1])
